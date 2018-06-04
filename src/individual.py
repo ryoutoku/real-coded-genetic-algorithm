@@ -7,16 +7,16 @@ class Individual(object):
 
     _evaluator = None
 
-    def __init__(self, genome):
-        self._genome = np.array(genome)
-        self._evaluate_value = cls._evaluator.evaluate(evaluate_value)
+    def __init__(self, gene):
+        self._genome = np.array(gene)
+        self._evaluate_value = Individual._evaluator.evaluate(self)
 
     @classmethod
     def set_evaluator(cls, evaluator):
-        cls._evaluator = evaluator
+        Individual._evaluator = evaluator
 
     @property
-    def genome(self):
+    def gene(self):
         """遺伝子
         """
         return self._genome

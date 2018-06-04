@@ -4,7 +4,7 @@ import numpy as np
 import random
 
 
-class IndivisualSelector(ABCMeta):
+class IndivisualSelector(metaclass=ABCMeta):
     """個体の選択方法のベース
     """
 

@@ -3,10 +3,10 @@
 import random
 import numpy as np
 
-from .indivisual import Indivisual
+from individual import Individual
 
 
-def generate_indivisual(maximum, minimum, dimension):
+def generate(maximum, minimum, dimension):
     """初期遺伝子を作成する
 
     Args:
@@ -18,5 +18,5 @@ def generate_indivisual(maximum, minimum, dimension):
         np.array: 生成した遺伝子
     """
     value_range = maximum - minimum
-    return Indivisual([value_range * np.random.rand() + minimum
+    return Individual([value_range * np.random.rand() + minimum
                        for _ in range(dimension)])

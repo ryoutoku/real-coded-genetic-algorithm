@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from .society import Society
-from .evaluator import *
-from .selector import *
-from .crossover import *
-from .generator import *
+from society import Society
+from evaluator import *
+from selector import *
+from crossover import *
+from generator import *
 
 
 def main():

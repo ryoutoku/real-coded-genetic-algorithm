@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from abc import ABCMeta, abstractmethod
-from .indivisual_selector import *
+import random
+import indivisual_selector import *
 
 
-class GenerationSelector(ABCMeta):
+class GenerationSelector(metaclass=ABCMeta):
     """次世代に残す個体の選択方法のベース
     """
 
@@ -17,6 +18,8 @@ class GenerationSelector(ABCMeta):
             children (list): 生成した子個体
         """
         pass
+
+        parents = [indivisuals.pop(x) in x in parents_list]
 
 
 class MMG(GenerationalSelector):
@@ -32,8 +35,15 @@ class MMG(GenerationalSelector):
             children (list): 生成した子個体
         """
 
-        # 集団から親を抽出
-        parents = [indivisuals.pop(x) in x in parents_list]
+        # 集団から除かれる候補の親を選出し、除く
+        index = random.sample(parents_list, 2)
+        [indivisuals.pop(x) for x in index]
 
-        # 親の数分変更
-        selection_num = len(parents)
+        # 次世代に残る候補
+        target = [parents_list[x] for x in index] + children
+
+        # エリート選択とルーレット選択で次世代を追加
+        elite = EliteSelector(1).select(target)
+        indivisuals.append(target.pop(elite))
+        roulette = RouletteSelector(1).select(target)
+        indivisuals.append(target.pop(roulette))
