@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from abc import ABCMeta, abstractmethod
-import numpy as np
 import random
-import individual import Individual
+import math
+import numpy as np
+from individual import Individual
 
 
 class Crossover(metaclass=ABCMeta):
@@ -45,23 +46,22 @@ class BLX_alpha(Crossover):
         matrix = np.array([individuals[x].gene for x in parent_list[:2]])
         gene_max = matrix.max(axis=0)
         gene_min = matrix.min(axis=0)
-        gene_mean = matrix.mean(axis=0)
+        gene_abs = np.abs(gene_max - gene_min)
+
+        gene_max = gene_max + self._alpha * gene_abs
+        gene_min = gene_min - self._alpha * gene_abs
 
         result = []
         for _ in range(self._generate_size):
             gene = [
-                random.uniform(gene_min, gene_max) * self._alpha * gene_mean
-                for gene_max, gene_min, gene_men in zip(gene_max, gene_min, gene_mean)]
+                random.uniform(g_min, g_max)
+                for g_max, g_min in zip(gene_max, gene_min)]
             result.append(Individual(gene))
 
         return result
 
 
 class Simplex(Crossover):
-
-    def __init__(self, generate_size, epsilon=0.3):
-        super(Simplex, self).__init__(generate_size)
-        self._alpha = alpha
 
     def crossover(self, individuals, parent_list):
         """次元数+1個体から子個体を生成する
@@ -70,12 +70,21 @@ class Simplex(Crossover):
             individuals (list(Individual)): 個体のリスト
         """
 
+        # 重心として親の各変数の平均を取る
         matrix = np.array([individuals[x].gene for x in parent_list])
+        center = matrix.mean(axis=0)
+
+        dimension = len(center)
+        epsilon = math.sqrt(dimension + 2)
+        matrix = center + epsilon * (matrix - center)
 
         result = []
         for _ in range(self._generate_size):
-            gene = [random.uniform(x[1], x[0]) * self._alpha * x[2] for
-                    x in gene_value]
+            gene = np.zeros(dimension)
+            for k, (vector1, vector2) in enumerate(zip(matrix, matrix[1:])):
+                r_k = random.uniform(0., 1.) ** (1./(k+1))
+                gene = r_k * (vector1 - vector2 + gene)
+            gene += matrix[-1]
             result.append(Individual(gene))
 
         return result
