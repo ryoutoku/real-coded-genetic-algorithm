@@ -21,11 +21,11 @@ class Crossover(metaclass=ABCMeta):
         """交叉を実行する
 
         Args:
-            individuals (Indivisual): 個体群
+            individuals (Individual): 個体群
             parent_list (list): 個体群の中から使用する親
 
         Returns:
-            list: 生成した子個体(list[Indivisual])
+            list: 生成した子個体(list[Individual])
         """
         pass
 
@@ -40,7 +40,7 @@ class BLX_alpha(Crossover):
         """2個体から子個体を生成する
 
         Args:
-            indivisuals (list(Indivisual)): 個体のリスト
+            individuals (list(Individual)): 個体のリスト
         """
         matrix = np.array([individuals[x].gene for x in parent_list[:2]])
         gene_max = matrix.max(axis=0)
@@ -67,7 +67,7 @@ class Simplex(Crossover):
         """次元数+1個体から子個体を生成する
 
         Args:
-            indivisuals (list(Indivisual)): 個体のリスト
+            individuals (list(Individual)): 個体のリスト
         """
 
         matrix = np.array([individuals[x].gene for x in parent_list])

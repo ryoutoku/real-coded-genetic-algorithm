@@ -4,7 +4,7 @@ import numpy as np
 import random
 
 
-class IndivisualSelector(metaclass=ABCMeta):
+class individualselector(metaclass=ABCMeta):
     """個体の選択方法のベース
     """
 
@@ -12,11 +12,11 @@ class IndivisualSelector(metaclass=ABCMeta):
         self._selection_num = selection_num
 
     @abstractmethod
-    def select(self, indivisuals):
+    def select(self, individuals):
         """選択した個体のリストを返す
 
         Args:
-            indivisuals (list): 個体のリスト
+            individuals (list): 個体のリスト
         """
         pass
 
@@ -25,15 +25,15 @@ class EliteSelector(GenerationalSelector):
     """エリート選択による個体選択
     """
 
-    def select(self, indivisuals):
+    def select(self, individuals):
         """選択した個体のリストを返す
 
         Args:
-            indivisuals (list): 個体のリスト
+            individuals (list): 個体のリスト
         """
 
         evaluate_list = np.array([
-            x.evaluate_value for x in indivisuals
+            x.evaluate_value for x in individuals
         ])
         # 評価値の小さいものから選択する
         return np.argsort(evaluate_list)[:self._selection_num]
@@ -43,15 +43,15 @@ class RouletteSelector(GenerationalSelector):
     """ルーレット選択による個体選択
     """
 
-    def select(self, indivisuals):
+    def select(self, individuals):
         """選択した個体のリストを返す
 
         Args:
-            indivisuals (list): 個体のリスト
+            individuals (list): 個体のリスト
         """
 
         evaluate_list = np.array([
-            x.evaluate_value for x in indivisuals
+            x.evaluate_value for x in individuals
         ])
 
         # 評価値が小さいものを選択しやすくする必要がある

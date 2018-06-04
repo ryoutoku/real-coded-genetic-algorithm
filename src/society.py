@@ -38,7 +38,7 @@ class Society(object):
         """評価値の最良の個体を返す
 
         Returns:
-            Indivisual: 評価値の最良の個体
+            Individual: 評価値の最良の個体
         """
 
         tmp_evaluate = np.array([x for x.evaluate_value() in self._individuals])
