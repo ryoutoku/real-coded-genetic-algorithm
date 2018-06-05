@@ -34,7 +34,7 @@ class Society(object):
         """
         self._individuals = [generator.generate() for _ in range(size)]
 
-    def get_best_indivisual(self):
+    def get_best_individual(self):
         """評価値の最良の個体を返す
 
         Returns:

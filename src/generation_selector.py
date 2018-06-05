@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from abc import ABCMeta, abstractmethod
 import random
-import indivisual_selector import *
+import individual_selector import *
 
 
 class GenerationSelector(metaclass=ABCMeta):
