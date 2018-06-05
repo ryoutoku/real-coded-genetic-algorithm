@@ -32,7 +32,7 @@ class Society(object):
             size (int): 生成する個体数
             generator (function): 生成関数
         """
-        self._individuals = [generator() for _ in range(size)]
+        self._individuals = [generator.generate() for _ in range(size)]
 
     def get_best_indivisual(self):
         """評価値の最良の個体を返す

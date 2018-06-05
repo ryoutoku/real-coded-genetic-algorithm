@@ -4,7 +4,7 @@ import numpy as np
 import random
 
 
-class individualselector(metaclass=ABCMeta):
+class Individualselector(metaclass=ABCMeta):
     """個体の選択方法のベース
     """
 
@@ -21,7 +21,7 @@ class individualselector(metaclass=ABCMeta):
         pass
 
 
-class EliteSelector(GenerationalSelector):
+class EliteSelector(Individualselector):
     """エリート選択による個体選択
     """
 
@@ -39,7 +39,7 @@ class EliteSelector(GenerationalSelector):
         return np.argsort(evaluate_list)[:self._selection_num]
 
 
-class RouletteSelector(GenerationalSelector):
+class RouletteSelector(Individualselector):
     """ルーレット選択による個体選択
     """
 
