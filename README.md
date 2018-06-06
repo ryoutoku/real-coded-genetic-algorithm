@@ -22,8 +22,10 @@ python main.py
     * 初期個体の遺伝子生成の定義
 * individual.py
     * 個体の定義
-* main.py
+* sample_main.py
     * Demoのエントリポイント
+* sample_plot.py
+    * 交叉のイメージプロットサンプル
 * parent_selector.py
     * 個体の選択を定義
 * society.py
