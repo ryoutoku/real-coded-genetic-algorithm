@@ -31,7 +31,6 @@ class EliteSelector(Individualselector):
         Args:
             individuals (list): 個体のリスト
         """
-
         evaluate_list = np.array([
             x.evaluate_value for x in individuals
         ])
@@ -55,11 +54,11 @@ class RouletteSelector(Individualselector):
         ])
 
         # 評価値が小さいものを選択しやすくする必要がある
-        evaluate_list = evaluate_list - np.max(evaluate_list)
+        evaluate_list = np.abs(evaluate_list - np.max(evaluate_list))
         total = np.sum(evaluate_list)
 
         selected_index = []
-        for _ in self._selection_num:
+        for _ in range(self._selection_num):
             threshold = random.uniform(0.0, total)
 
             sum = 0.0
@@ -68,5 +67,7 @@ class RouletteSelector(Individualselector):
                 if sum >= threshold:
                     # 選択されたindexは次の選択から除く
                     selected_index.append(index)
-                    np.delete(evaluate_list, index)
+                    evaluate_list[index] = 0.
                     total -= value
+                    break
+        return selected_index

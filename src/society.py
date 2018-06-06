@@ -40,8 +40,7 @@ class Society(object):
         Returns:
             Individual: 評価値の最良の個体
         """
-
-        tmp_evaluate = np.array([x for x.evaluate_value() in self._individuals])
+        tmp_evaluate = np.array([x.evaluate_value for x in self._individuals])
 
         # ベンチマーク関数は評価値が低いものが評価値が良い
         return self._individuals[np.argmin(tmp_evaluate)]
@@ -54,8 +53,12 @@ class Society(object):
         parents_index = self._parent_selector.select(self._individuals)
 
         # crossover
-        children = crossover.crossover(self._individuals, parents)
+        children = self._crossover.crossover(self._individuals, parents_index)
 
         # select next generation from all individuals
         self._individuals = self._generation_selector.select(
-            self._individuals, parents, children)
+            self._individuals, parents_index, children)
+
+    @property
+    def individuals(self):
+        return self._individuals
