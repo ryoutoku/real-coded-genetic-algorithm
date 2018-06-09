@@ -156,7 +156,7 @@ def demo_3():
     individual_num = 300
 
     # 世代数の最大
-    generation_loop = 30
+    generation_loop = 1000
 
     # 評価関数
     evaluator = Rosenbrock()
