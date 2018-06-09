@@ -47,4 +47,6 @@ def plot_simplex():
     plt.show()
 
 
-plot_simplex()
+if __name__ == "__main__":
+    # plot_blx_alpha()
+    # plot_simplex()
