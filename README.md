@@ -9,6 +9,7 @@ python main.py
 
 * Python3
 * numpy
+* maplotlib (if execute sample code)
 
 ## Constitution
 
@@ -26,6 +27,7 @@ python main.py
     * Demoのエントリポイント
 * sample_plot.py
     * 交叉のイメージプロットサンプル
+    * コメントアウトを削除して実行
 * parent_selector.py
     * 個体の選択を定義
 * society.py
