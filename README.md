@@ -9,9 +9,11 @@ sample_xxx.pyのコメントアウトを解除して実行すること
 
 
 * 交叉の作成分布の画像化
+
 python sample_plot.py
 
-* * 実際の最適化の挙動のサンプルコードと画像化
+* 実際の最適化の挙動のサンプルコードと画像化
+
 python sample_main.py
 
 ## Required
