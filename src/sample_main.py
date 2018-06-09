@@ -156,7 +156,7 @@ def demo_3():
     individual_num = 300
 
     # 世代数の最大
-    generation_loop = 1000
+    generation_loop = 30
 
     # 評価関数
     evaluator = Rosenbrock()
@@ -184,13 +184,13 @@ def demo_3():
     blx_data = []
     iterator_list = []
 
-    # 初期個体のデータを保持
     best_simplex = society_simplex.get_best_individual()
     best_blx = society_blx.get_best_individual()
     simplex_data.append(best_simplex.evaluate_value)
-    blx_data.append(best_blx.evaluate_value)
-    iterator_list.append(0)
+    best_blx.append(best_blx.evaluate_value)
+    iterator_list.append()
 
+    best = None
     for i in range(generation_loop):
         society_simplex.change_generation()
         society_blx.change_generation()
@@ -201,8 +201,8 @@ def demo_3():
 
         simplex_data.append(best_simplex.evaluate_value)
         blx_data.append(best_blx.evaluate_value)
-        iterator_list.append(i+1)
-        print(iterator_list[-1], simplex_data[-1], blx_data[-1])
+        iterator_list.append(i)
+        print(i)
 
     # 評価値の推移を表示
     plot_evaluate_values(iterator_list, simplex_data, blx_data)
@@ -211,4 +211,4 @@ def demo_3():
 if __name__ == "__main__":
     # demo_1()
     # demo_2()
-    # demo_3()
+    demo_3()
