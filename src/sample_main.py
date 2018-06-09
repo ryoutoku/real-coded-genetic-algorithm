@@ -190,7 +190,6 @@ def demo_3():
     best_blx.append(best_blx.evaluate_value)
     iterator_list.append()
 
-    best = None
     for i in range(generation_loop):
         society_simplex.change_generation()
         society_blx.change_generation()
