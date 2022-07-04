@@ -1,5 +1,7 @@
 # real-coded-genetic-algorithm
 
+実数値遺伝的アルゴリズムのpython実装
+
 ==================
 
 ## Demo
